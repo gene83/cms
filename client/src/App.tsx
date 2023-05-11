@@ -4,7 +4,9 @@ import './App.css';
 function App() {
   const [data, setData] = useState("");
 
-  function fetchData() {
+  async function fetchData() {
+    const res = await fetch("items/1")
+    console.log(await res.json());
     setData("FETCHED")
   }
 
