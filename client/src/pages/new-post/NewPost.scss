@@ -1,0 +1,23 @@
+.post-container {
+    margin: 2rem;
+    padding: 2rem;
+    border: solid 1px black;
+    
+    div.col {
+        display: flex;
+        flex-direction: column;
+    }
+
+    div.row {
+        display: flex;
+        align-items: center;
+    }
+
+    input, select {
+        margin: 16px 0;
+    }
+
+    input.description {
+        height: 4rem;
+    }
+}
