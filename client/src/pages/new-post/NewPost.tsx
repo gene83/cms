@@ -6,21 +6,21 @@ import { useCallback, useState } from 'react';
 type Category = '' | 'Vehicles' | 'Sporting Goods' | 'Clothing';
 const CATEGORIES: Category[]  = ['', 'Vehicles', 'Sporting Goods', 'Clothing'];
 
-type Image = File & { id: number, src: string }
+type Image = { id?: number, src: string }
 
 
 const NewPost = () => {
     const [images, setImages] = useState<Image[]>([]);
 
     const onDrop = useCallback((files: File[]) => {
-        files.map((file, index) => {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                setImages((prevState) => [
-                    ...prevState,
-                    { id: index, src: e.target?.result } as Image
-                ])
-            }
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            setImages((prevState) => [
+                ...prevState,
+                { src: e.target?.result } as Image
+            ])
+        }
+        files.map((file) => {
             reader.readAsDataURL(file);
             return file;
         })
@@ -36,9 +36,9 @@ const NewPost = () => {
     });
     
 
-    const previews = images.map((image) => (
-        <div key={image.id}>
-            <img src={image.src} alt={image.id.toString()} />
+    const previews = images.map((image,idx) => (
+        <div key={idx}>
+            <img src={image.src} alt="not found" />
         </div>
     ))
 
